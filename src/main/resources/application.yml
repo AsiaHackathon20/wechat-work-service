@@ -1,5 +1,8 @@
-spring:
-  profiles: dev
+#spring:
+#  profiles: dev
+
+server:
+  port: 9090
 
 wechatwork:
   corpid:test_corp_id
@@ -7,3 +10,7 @@ wechatwork:
   externalcontact:test_external_contact
     token:test_token
     aesKey:test_aesKey
+
+gateways:
+  policyGateway:
+    baseurl: http://localhost:8080
