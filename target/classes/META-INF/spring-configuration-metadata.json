@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "wechatwork",
+      "type": "com.example.wechatwork.config.WechatWorkConfig",
+      "sourceType": "com.example.wechatwork.config.WechatWorkConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "wechatwork",
+      "type": "java.lang.String",
+      "description": "Description for wechatwork."
+    }
+  ],
+  "hints": []
+}

@@ -1,0 +1,7 @@
+META-INF/spring-configuration-metadata.json
+com/example/wechatwork/config/WechatWorkConfig.class
+com/example/wechatwork/model/CorporateCustomerEvent.class
+com/example/wechatwork/WechatWorkSampleApplication.class
+com/example/wechatwork/gateway/WechatWorkGateway.class
+com/example/wechatwork/model/GetTokenResponse.class
+com/example/wechatwork/controller/CorporateCustomerEventController.class

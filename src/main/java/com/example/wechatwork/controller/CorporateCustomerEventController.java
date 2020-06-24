@@ -12,11 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 @Controller
 public class CorporateCustomerEventController {
@@ -81,7 +83,7 @@ public class CorporateCustomerEventController {
     }
 
     private void writeStringToFile(String eventString) {
-        try (var fr = new FileWriter("eventString" + System.currentTimeMillis(), StandardCharsets.UTF_8)) {
+        try (FileWriter fr = new FileWriter("eventString" + System.currentTimeMillis())) {
             fr.write(eventString);
         } catch (IOException e) {
             e.printStackTrace();

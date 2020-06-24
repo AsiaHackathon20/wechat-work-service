@@ -7,18 +7,19 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties
+@ConfigurationProperties("wechatwork")
 public class WechatWorkConfig {
-    @Value( "${wechatwork.corpid}" )
+
+    @Value("${wechatwork.corpid:test_corp_identifier}")
     private String corpid;
 
-    @Value( "${wechatwork.corpsecret}" )
+    @Value( "${wechatwork.corpsecret:test_corp_secret_string}" )
     private String corpsecret;
 
-    @Value( "${wechatwork.externalcontact.token}" )
+    @Value( "${wechatwork.externalcontact.token:test_ext_contact_token}" )
     private String externalContactToken;
 
-    @Value( "${wechatwork.externalcontact.aesKey}" )
+    @Value( "${wechatwork.externalcontact.aesKey:test_aesKey}" )
     private String externalContactAesKey;
 
     public String getCorpid() {
