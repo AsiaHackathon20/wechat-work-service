@@ -3,7 +3,6 @@ package com.example.wechatwork.gateway;
 import com.example.wechatwork.config.WechatWorkConfig;
 import com.example.wechatwork.model.GetTokenResponse;
 import lombok.val;
-import me.chanjar.weixin.common.api.WxConsts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;

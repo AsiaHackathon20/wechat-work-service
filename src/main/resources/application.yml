@@ -13,7 +13,3 @@ wechatwork:
 
 logging:
   config: 'classpath:logback.xml'
-
-gateways:
-  policyGateway:
-    baseurl: http://localhost:8080

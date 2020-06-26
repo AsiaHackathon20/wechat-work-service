@@ -3,14 +3,10 @@ package com.example.wechatwork.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties
-@EnableCaching
-@EnableFeignClients(basePackages = "com.example.wechatwork.gateway")
 @ConfigurationProperties("wechatwork")
 public class WechatWorkConfig {
 

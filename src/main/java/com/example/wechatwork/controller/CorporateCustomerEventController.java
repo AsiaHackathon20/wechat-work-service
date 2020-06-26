@@ -36,9 +36,9 @@ public class CorporateCustomerEventController {
 
     @GetMapping("/corporate-customer-event")
     public ResponseEntity<?> echo(@RequestParam("msg_signature") String msg_signature,
-                       @RequestParam("timestamp") String timestamp,
-                       @RequestParam("nonce") String nonce,
-                       @RequestParam("echostr") String echostr) {
+                                  @RequestParam("timestamp") String timestamp,
+                                  @RequestParam("nonce") String nonce,
+                                  @RequestParam("echostr") String echostr) {
         WxCryptUtil wxCryptUtil = new WxCryptUtil(wechatWorkConfig.getExternalContactToken(),
                 wechatWorkConfig.getExternalContactAesKey(),
                 wechatWorkConfig.getCorpid());
@@ -51,7 +51,7 @@ public class CorporateCustomerEventController {
     @PostMapping(path = "/corporate-customer-event")
     public ResponseEntity<?> callback(@RequestParam("msg_signature") String message,
                                       @RequestParam("nonce") String nonce,
-                                      @RequestBody String eventString){
+                                      @RequestBody String eventString) {
 
         WxCryptUtil wxCryptUtil = new WxCryptUtil(wechatWorkConfig.getExternalContactToken(),
                 wechatWorkConfig.getExternalContactAesKey(),
