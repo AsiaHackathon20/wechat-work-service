@@ -57,6 +57,10 @@ git clone https://github.com/jackycct/wechat-work-sample.git
 If you are using Intellij for development, enable Lombok plugin
 https://projectlombok.org/setup/intellij
 
+## Lombok for vscode
+If you are using vscode for development, you might need to install below plugin
+https://marketplace.visualstudio.com/items?itemName=GabrielBB.vscode-lombok
+
 ## Enabling Port forwarding 
 Enable port forward in your router from external URL to your  callback service
 e.g. 
