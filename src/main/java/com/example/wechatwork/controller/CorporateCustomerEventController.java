@@ -1,11 +1,16 @@
 package com.example.wechatwork.controller;
 
 import com.example.wechatwork.config.WechatWorkConfig;
+import com.example.wechatwork.gateway.CoreServiceFeignClient;
 import com.example.wechatwork.gateway.WechatWorkGateway;
 import com.example.wechatwork.model.GetTokenResponse;
+import com.example.wechatwork.model.WeChatMessage;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lombok.val;
 import me.chanjar.weixin.common.util.XmlUtils;
 import me.chanjar.weixin.common.util.crypto.WxCryptUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 public class CorporateCustomerEventController {
@@ -28,6 +34,10 @@ public class CorporateCustomerEventController {
     private WechatWorkConfig wechatWorkConfig;
     @Autowired
     private WechatWorkGateway gw;
+    @Autowired
+    private CoreServiceFeignClient coreServiceFeignClient;
+
+    private final XmlMapper xmlMapper = new XmlMapper();
 
     @GetMapping("/ping")
     public ResponseEntity<?> ping() {
@@ -64,8 +74,11 @@ public class CorporateCustomerEventController {
 
         String encryptedXml = String.valueOf(msgEnvelope.get("Encrypt"));
         String decryptedXml = wxCryptUtil.decrypt(encryptedXml);
+        LOGGER.info("********** Decrpypted xml = {} **************", decryptedXml);
 
         val msgContent = XmlUtils.xml2Map(decryptedXml);
+        final WeChatMessage weChatMessage = getWeChatMessage(decryptedXml);
+        coreServiceFeignClient.publishWeChatMessage(weChatMessage);
 
         System.out.println("********** New Message received **************");
         msgContent.forEach((k, v) -> System.out.println(k + " : " + v));
@@ -88,5 +101,23 @@ public class CorporateCustomerEventController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private WeChatMessage getWeChatMessage(final String xml){
+        WeChatMessage weChatMessage = new WeChatMessage();
+        if(StringUtils.isNotBlank(xml)){
+            try {
+                weChatMessage = xmlMapper.readValue(xml, WeChatMessage.class);
+            } catch (JsonProcessingException e) {
+                LOGGER.error("An exception occurred while parsing the WeChat message", e);
+            }
+        }else {
+            LOGGER.warn("Blank Message received");
+        }
+        return weChatMessage;
+    }
+
+    private void publishWeChatMessage(final WeChatMessage weChatMessage){
+
     }
 }

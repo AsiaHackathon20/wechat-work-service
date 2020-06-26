@@ -1,0 +1,59 @@
+ssh -i "kratos_f241770.pem" ec2-user@ec2-3-16-44-226.us-east-2.compute.amazonaws.com
+
+1. policy-service deployment
+#scp -i "<path to pem>" target\wechatwork-sample-0.0.1-SNAPSHOT.jar ec2-user@<EC2 instance public DNS>:~/app/
+
+cd /Users/Anupam/IdeaProjects/policy-service
+scp -i /Users/Anupam/Downloads/kratos_f241770.pem target/policy-service-0.0.1-SNAPSHOT.jar ec2-user@ec2-3-16-44-226.us-east-2.compute.amazonaws.com:~/app/
+scp -i /Users/Anupam/Downloads/kratos_f241770_sg.pem target/policy-service-0.0.1-SNAPSHOT.jar ec2-user@ec2-18-141-239-225.ap-southeast-1.compute.amazonaws.com:~/app/
+
+cd /Users/Anupam/IdeaProjects/wechat-work-service
+scp -i /Users/Anupam/Downloads/kratos_f241770_sg.pem target/wechatwork-sample-0.0.1-SNAPSHOT.jar ec2-user@ec2-18-141-239-225.ap-southeast-1.compute.amazonaws.com:~/app/
+
+
+cd /Users/Anupam/IdeaProjects/core-service
+scp -i /Users/Anupam/Downloads/kratos_f241770_sg.pem target/core-service-0.0.1-SNAPSHOT.jar ec2-user@ec2-18-141-239-225.ap-southeast-1.compute.amazonaws.com:~/app/
+
+
+/usr/bin/java -jar -server policy-service-0.0.1-SNAPSHOT.jar > /dev/null &
+/usr/bin/java -jar -server wechatwork-sample-0.0.1-SNAPSHOT.jar -Dserver.log.location=log > /dev/null &
+/usr/bin/java -jar -server core-service-0.0.1-SNAPSHOT.jar -Dserver.log.location=log > /dev/null &
+
+
+18.141.239.225
+
+2020-06-26T16:10:25.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 121.51.162.114 172.31.34.118 19983 8080 6 1 52 1593159025 1593159083 REJECT OK
+
+2020-06-26T16:10:25.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 59.36.121.185 172.31.34.118 12895 8080 6 1 52 1593159025 1593159083 REJECT OK
+
+2020-06-26T16:10:25.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 157.255.192.112 172.31.34.118 43097 8080 6 1 52 1593159025 1593159083 REJECT OK
+
+2020-06-26T16:10:25.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 59.36.121.185 172.31.34.118 12894 8080 6 1 52 1593159025 1593159083 REJECT OK
+
+2020-06-26T16:10:25.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 157.255.192.112 172.31.34.118 43096 8080 6 1 52 1593159025 1593159083 REJECT OK
+
+2020-06-26T16:11:23.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 121.51.162.114 172.31.34.118 19984 8080 6 1 52 1593159083 1593159143 REJECT OK
+
+2020-06-26T16:13:24.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 121.51.162.114 172.31.34.118 19990 8080 6 1 52 1593159204 1593159263 REJECT OK
+
+2020-06-26T16:13:24.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 157.255.192.112 172.31.34.118 43113 8080 6 1 52 1593159204 1593159263 REJECT OK
+
+2020-06-26T16:13:24.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 59.36.121.185 172.31.34.118 12916 8080 6 1 52 1593159204 1593159263 REJECT OK
+
+2020-06-26T16:13:24.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 121.51.162.114 172.31.34.118 19989 8080 6 1 52 1593159204 1593159263 REJECT OK
+
+2020-06-26T16:13:24.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 157.255.192.112 172.31.34.118 43112 8080 6 1 52 1593159204 1593159263 REJECT OK
+
+2020-06-26T16:13:24.000+08:00
+2 126235714158 eni-055d9d4daa0beab1c 59.36.121.185 172.31.34.118 12915 8080 6 1 52 1593159204 1593159263 REJECT OK

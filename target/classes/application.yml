@@ -1,9 +1,21 @@
-spring:
-  profiles: dev
+#spring:
+#  profiles: dev
+
+server:
+  port: 8080
 
 wechatwork:
-  corpid:test_corp_id
-  corpsecret:test_corp_secret
-  externalcontact:test_external_contact
-    token:test_token
-    aesKey:test_aesKey
+  corpid: ww4816b0ccb0d935f1
+  corpsecret: 262bI7bQjmaMQQesL205ZjWofE8Pl-zgEi9HqXI3IMo
+  externalcontact:
+    token: JMN9M9N
+    aesKey: LsQmBCPwvVaSA9c6fmLCzdzVCnYhzS5p9rSbsTekoz4
+
+logging:
+  config: 'classpath:logback.xml'
+
+gateways:
+  policyGateway:
+    baseurl: http://localhost:9000
+  coreService:
+    baseurl: http://localhost:7070
