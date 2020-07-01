@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -36,6 +37,8 @@ public class CorporateCustomerEventController {
     private WechatWorkGateway gw;
     @Autowired
     private CoreServiceFeignClient coreServiceFeignClient;
+    @Value("${department.id:UNKNOWN_DEPARTMENT}")
+    private String departmentId;
 
     private final XmlMapper xmlMapper = new XmlMapper();
 
@@ -105,6 +108,7 @@ public class CorporateCustomerEventController {
 
     private WeChatMessage getWeChatMessage(final String xml){
         WeChatMessage weChatMessage = new WeChatMessage();
+
         if(StringUtils.isNotBlank(xml)){
             try {
                 weChatMessage = xmlMapper.readValue(xml, WeChatMessage.class);
@@ -114,6 +118,7 @@ public class CorporateCustomerEventController {
         }else {
             LOGGER.warn("Blank Message received");
         }
+        weChatMessage.setDepartmentId(StringUtils.trimToEmpty(departmentId));
         return weChatMessage;
     }
 
